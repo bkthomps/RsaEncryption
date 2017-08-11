@@ -1,0 +1,5 @@
+Bailey Thompson
+RSA Encryption (1.0.0)
+11 August 2017
+
+Simple implementation of RSA Encryption.

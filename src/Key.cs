@@ -9,13 +9,13 @@ namespace RsaEncryption
      * together. The variable e has to satisfy gcd(e, phi) = 1, so just another prime. The variable d has to satisfy
      * ed = 1 mod phi. The public key is (e, n) and the private key is (d, n).
      */
-    public class Key
+    internal class Key
     {
         private readonly int n;
         private readonly int e;
         private int d;
 
-        public Key(int primeOne, int primeTwo, List<int> primes)
+        internal Key(int primeOne, int primeTwo, List<int> primes)
         {
             n = primeOne * primeTwo;
             var phi = (primeOne - 1) * (primeTwo - 1);
@@ -32,7 +32,7 @@ namespace RsaEncryption
             Console.WriteLine("Public Key: (e, n) = (" + e + ", " + n + ")");
         }
 
-        public bool IsFoundD(int phi)
+        private bool IsFoundD(int phi)
         {
             for (var i = phi - 1; i > 1; i--)
             {
@@ -48,10 +48,10 @@ namespace RsaEncryption
             return false;
         }
 
-        public int[] Encrypt(string message)
+        internal int[] Encrypt(string message)
         {
-            char[] charArray = message.ToCharArray();
-            int[] array = new int[charArray.Length];
+            var charArray = message.ToCharArray();
+            var array = new int[charArray.Length];
             for (var i = 0; i < array.Length; i++)
             {
                 array[i] = (int) BigInteger.ModPow(charArray[i], e, n);
@@ -59,9 +59,9 @@ namespace RsaEncryption
             return array;
         }
 
-        public string Decrypt(int[] cyphertext)
+        internal string Decrypt(int[] cyphertext)
         {
-            char[] array = new char[cyphertext.Length];
+            var array = new char[cyphertext.Length];
             for (var i = 0; i < array.Length; i++)
             {
                 array[i] = (char) BigInteger.ModPow(cyphertext[i], d, n);

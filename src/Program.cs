@@ -5,9 +5,9 @@ namespace RsaEncryption
     /*
      * Entry point of the program, display information to user on console.
      */
-    internal class Program
+    internal static class Program
     {
-        public static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var primeGen = new Primes();
             var key = primeGen.GetKey();
